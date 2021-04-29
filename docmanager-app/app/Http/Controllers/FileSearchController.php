@@ -26,7 +26,7 @@ class FileSearchController extends Controller
 
         $path = public_path('files');
         $files = File::allfiles($path);
-        $count = 0;
+        $countw = 0;
         $req = $request->all();
         $data = new FileSearch;
         $results = [];
@@ -35,6 +35,7 @@ class FileSearchController extends Controller
             
             $fileContents = str_word_count($file->getContents(), 1);
             foreach ($fileContents as $fileContent) {
+                $countw++;
                 if (strcasecmp($fileContent, $word) == 0) {
                     if (isset($results[$file->getFileName()])) {
                         $results[$file->getFileName()] += 1;
@@ -44,10 +45,11 @@ class FileSearchController extends Controller
                     }
                 } 
             }
+        
         }
         arsort($results);
        // dd($results);
-        return response()->view('search', compact('results','word'));
+        return response()->view('search', compact('results','word','countw'));
     }
     public function delete_files(Request $request)
     {
