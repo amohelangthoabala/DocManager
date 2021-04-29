@@ -26,7 +26,6 @@ Route::get('/test', 'TestController@index')->name('test');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $path = public_path('files');
     $files = File::allfiles($path);
-    /App/Models/File
     return view('dashboard', compact('files', ));
 })->name('dashboard');
 /*Route::post('files/{id}', function ($id) {
