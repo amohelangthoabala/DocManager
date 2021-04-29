@@ -38,7 +38,8 @@ class FileUploadController extends Controller
         $file->move($location,$fileModel);
 
         $values = array('name' => $fname,'size' => $fsize);
-        DB::table('files')->insert($values);
+        $savef = File::create($values);
+        //DB::table('files')->insert($values);
 
         return redirect('dashboard');
  
