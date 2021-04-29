@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\File;
 use Session;
-use Carbon\Carbon;
+use DB;
 
 class FileUploadController extends Controller
 {
@@ -26,13 +26,19 @@ class FileUploadController extends Controller
         
         //$fileModel = $request->file('file')->getClientOriginalName();
         $fileModel = time().'_'.$file->getClientOriginalName();
+
+        $fname = $file->getFileName();
+        $fsize = $file->getSize();
  
         //$fileModel = $request->file('file')->store('public/files');
         
         $location = 'files';
-        dd(Carbon::now());
+      
         // Upload file
         $file->move($location,$fileModel);
+
+        $values = array('name' => $fname,'size' => $fsize);
+        DB::table('files')->insert($values);
 
         return redirect('dashboard');
  
