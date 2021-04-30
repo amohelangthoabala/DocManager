@@ -16,10 +16,16 @@ You can view a live demo
 - [Live Demo](http://doc-manager-test.herokuapp.com/).
 
 Or follow this steps.
+
 Use php 7 or better for this project.
+
 Download and install composer.
+
 [composer require "this project"]
+
 Download sqlite
+
+php artisan serve
  
 ## Useful Commands
 
